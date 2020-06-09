@@ -20,7 +20,7 @@ public class RemoteCImpl extends UnicastRemoteObject implements RemoteC, Seriali
     }
 
     public void sendPage (WebsiteInfo info) throws RemoteException {
-        System.out.println("Thread Pagina ricevuta con successo!");
+        System.out.println("Thread_" + this.threadId + " Pagina ricevuta con successo!");
         System.out.println("URL pagina: " + info.getUrl());
         System.out.println("Corpo pagina: " + info.getWebPageContentHTML());
     }
@@ -39,6 +39,7 @@ public class RemoteCImpl extends UnicastRemoteObject implements RemoteC, Seriali
                 }
                 if (this.random.nextInt(2) == 0) {
                     this.server.unsubscribe(this.threadId);
+                    break;
                 }
             }
         } catch (RemoteException exc) {
