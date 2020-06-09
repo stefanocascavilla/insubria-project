@@ -37,6 +37,7 @@ public class RemoteSImpl extends Observable implements RemoteS {
 
     public static void main (String[] args) throws RemoteException {
         if (System.getSecurityManager() == null) {
+            System.out.println("Setting security manager...");
             System.setSecurityManager(new RMISecurityManager()); 
         }
 
