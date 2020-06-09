@@ -31,3 +31,4 @@ public class WebsiteInfo implements Serializable {
     * Returns the value of the webPageContentHTML field
     */
     public String getWebPageContentHTML() { return this.webPageContentHTML; }
+}
