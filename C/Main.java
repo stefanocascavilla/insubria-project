@@ -12,7 +12,7 @@ public class Main {
         Thread thread = null;
 
         for (int x = 0; x < 5; x++) {
-            thread = new Thread(new RemoteCImpl("thread_" + x, server));
+            thread = new Thread(new RemoteCImpl("thread_" + x, server, x + 1));
             thread.start();
         }
     }

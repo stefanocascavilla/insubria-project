@@ -5,18 +5,20 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.util.Random;
 
-public class RemoteCImpl extends UnicastRemoteObject implements RemoteC, Serializable, Runnable {
+public class RemoteCImpl implements RemoteC, Serializable, Runnable {
     private static final long serialVersionUID = 1L;
 
     private String threadId;
     transient private RemoteS server;
     private Random random;
 
-    public RemoteCImpl (String threadId, RemoteS server) throws RemoteException {
+    public RemoteCImpl (String threadId, RemoteS server, int portCounter) throws RemoteException {
         this.threadId = threadId;
         this.server = server;
 
         this.random = new Random();
+
+        UnicastRemoteObject.exportObject(this, portCounter);
     }
 
     public void sendPage (WebsiteInfo info) throws RemoteException {
@@ -42,6 +44,7 @@ public class RemoteCImpl extends UnicastRemoteObject implements RemoteC, Seriali
                     break;
                 }
             }
+            UnicastRemoteObject.unexportObject(this, true);
         } catch (RemoteException exc) {
             System.out.println("Remote exception occurred for thread " + this.threadId + " : " + exc);
         }

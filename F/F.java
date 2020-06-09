@@ -15,7 +15,7 @@ public class F {
                 // 
                 System.setSecurityManager(new RMISecurityManager());
                 try {
-                    Registry registro = LocateRegistry.getRegistry("192.168.1.102", 1099);
+                    Registry registro = LocateRegistry.getRegistry("localhost", 1099);
                     RemoteS stub = (RemoteS) registro.lookup("sObj");
                     stub.loadPage(contentSite);
                 } catch (Exception e) {
