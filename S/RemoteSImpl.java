@@ -16,20 +16,20 @@ public class RemoteSImpl extends Observable implements RemoteS {
         this.listObservers = new HashMap<String, WrappedC>();
     }
 
-    public void subscribe (RemoteC observer, String name) throws RemoteException {
-        WrappedC wrappedC = new WrappedC(observer);
+    public synchronized void subscribe (RemoteC observer, String name) throws RemoteException {
+        WrappedC wrappedC = new WrappedC(observer, name);
         this.addObserver(wrappedC);
         this.listObservers.put(name, wrappedC);
         System.out.println("Aggiunto observer: " + name);
     }
 
-    public void unsubscribe (String name) throws RemoteException {
+    public synchronized void unsubscribe (String name) throws RemoteException {
         WrappedC observerToDelete = this.listObservers.remove(name);
         this.deleteObserver(observerToDelete);
         System.out.println("Rimosso observer: " + name);
     }
 
-    public void loadPage (WebsiteInfo info) throws RemoteException {
+    public synchronized void loadPage (WebsiteInfo info) throws RemoteException {
         System.out.println("Invio dell'informazione ricevuta...");
         this.setChanged();
         this.notifyObservers(info);
