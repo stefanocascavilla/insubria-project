@@ -41,6 +41,7 @@ public class RemoteCImpl implements RemoteC, Serializable, Runnable {
                 }
                 if (this.random.nextInt(2) == 0) {
                     this.server.unsubscribe(this.threadId);
+                    System.out.println("Thread " + this.threadId + " terminato");
                     break;
                 }
             }
