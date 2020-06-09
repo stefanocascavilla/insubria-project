@@ -58,7 +58,6 @@ public class Proxy implements ProxyInterface {
         } catch(IOException exc) {
             System.err.println("ERROR while reading");
         } finally {
-            System.out.println(firstLineHTMLPage);
             System.out.println("*** closing...");
             try {
                 if(socket != null && !socket.isClosed()) {

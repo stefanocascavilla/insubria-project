@@ -4,28 +4,24 @@ import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 
 public class F {
+    private static final int MAX_THREADS_NUMBER = 2;
+
     public static void main(String[] args) {
-        try {
-            String URLWebsite = args[0];
-            Proxy proxy = new Proxy(URLWebsite);
-            String webPageContent = proxy.setWebPageByProxy(URLWebsite);
-            if(webPageContent != null) {
-                WebsiteInfo contentSite = new WebsiteInfo(URLWebsite, webPageContent);
-                System.out.println(contentSite.getWebPageContentHTML());
-                // 
-                System.setSecurityManager(new RMISecurityManager());
-                try {
-                    Registry registro = LocateRegistry.getRegistry("localhost", 1099);
-                    RemoteS stub = (RemoteS) registro.lookup("sObj");
-                    stub.loadPage(contentSite);
-                } catch (Exception e) {
-                    System.err.println("Client exception: " + e.toString());
+        if(args.length >= 2) {
+            System.setSecurityManager(new RMISecurityManager());
+            try {
+                Registry registro = LocateRegistry.getRegistry(args[args.length - 1], 1099);
+                RemoteS stub = (RemoteS) registro.lookup("sObj");
+
+                for(int i = 0; i < MAX_THREADS_NUMBER; i++) {
+                    new SingleF(i, stub, args.length - 1 == MAX_THREADS_NUMBER ? args[i] : args[0]);
+                    Thread.sleep(1000);
                 }
-            } else {
-                System.err.println("The content of the web page couldn't been retrieved");
+            } catch (Exception e) {
+                System.err.println("Client exception: " + e.toString());
             }
-        } catch(ArrayIndexOutOfBoundsException exc) {
-            System.err.println("No parameter were passed");
+        } else {
+            System.err.println("You must insert an URL website and the IP of the server at least");
         }
     }
 }
