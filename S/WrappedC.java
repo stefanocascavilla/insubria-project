@@ -1,5 +1,3 @@
-package S;
-
 import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;

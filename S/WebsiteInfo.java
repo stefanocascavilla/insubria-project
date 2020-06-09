@@ -1,5 +1,3 @@
-package S;
-
 import java.io.Serializable;
 
 public class WebsiteInfo implements Serializable {
