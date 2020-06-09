@@ -31,9 +31,10 @@ public class RemoteSImpl extends Observable implements RemoteS {
 
     public synchronized void loadPage (WebsiteInfo info) throws RemoteException {
         System.out.println("Invio dell'informazione ricevuta...");
-        this.setChanged();
+        System.out.println("URL: " + info.getUrl() + " --- Body: " + info.getWebPageContentHTML());
+        /*this.setChanged();
         this.notifyObservers(info);
-        System.out.println("Invio dell'informazione avvenuta con successo!");
+        System.out.println("Invio dell'informazione avvenuta con successo!");*/
     }
 
     public static void main (String[] args) throws RemoteException {
