@@ -1,4 +1,4 @@
-Per eseguire correttamente i programmi è necessario decomprimere lo zip che contiene 3 cartelle di nome "S", "F" e "C". Per prima cosa è necessario entrare in ognuna di esse ed eseguire il seguente comando per la compilazione dei file Java: java -d . *.java
+Per eseguire correttamente i programmi è necessario decomprimere lo zip che contiene 3 cartelle di nome "S", "F" e "C". Per prima cosa è necessario entrare in ognuna di esse ed eseguire il seguente comando per la compilazione dei file Java: javac -d . *.java
 
 A questo punto è necessario aprire tre differenti tab del teminale (la prima all'interno della cartella "S", la seconda all'interno della cartella "F", e la terza all'interno della cartella "C").
 
@@ -7,4 +7,4 @@ Se tutto va a buon fine verrà mostrato il log: "Server in ascolto...".
 
 Terminale nella cartella "C": In questa cartella c'è il codice per la generazione dei thread di tipo RemoteC che fungono da Observer nei confronti del server remoto che funge da Observable. Per avviare lo script Java che crea 5 differenti thread è necessario eseguire il seguente comando: java -Djava.security.policy=policy Main <IP Server> (N.B. Nel caso in cui tutto venga eseguito in locale, come <IP Server> si passa localhost).
 
-Terminale nella cartella "F": In questa cartella c'è il codice per la generazione dei thread che utilizzeranno istanze di Proxy per scaricare info dalle pagine HTML. Per lanciare lo script Java che crea due differenti thread è necessario eseguire il seguente comando: java -Djava.security.policy=policy F <URL pagina web 1> <URL pogina web 2> <IP Server> (N.B. Nel caso in cui tutto venga eseguito in locale, al posto di <IP Server> si passa localhost).
+Terminale nella cartella "F": In questa cartella c'è il codice per la generazione dei thread che utilizzeranno istanze di Proxy per scaricare info dalle pagine HTML. Per lanciare lo script Java che crea due differenti thread è necessario eseguire il seguente comando: java -Djava.security.policy=policy F <URL pagina web 1> <URL pagina web 2> <IP Server> (N.B. Nel caso in cui tutto venga eseguito in locale, al posto di <IP Server> si passa localhost).
