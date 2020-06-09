@@ -1,10 +1,12 @@
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main {
     public static void main(String[] args) throws RemoteException, NotBoundException {
+        System.setSecurityManager(new RMISecurityManager());
         Registry registry = LocateRegistry.getRegistry("localhost", 1099);
         RemoteS server = (RemoteS) registry.lookup("sObj");
         Thread thread = null;
